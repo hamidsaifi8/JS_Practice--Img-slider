@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliders</title>
+    <link rel="stylesheet" href="slider.css">
+
+</head>
+
+<body>
+
+    <div class="slider">
+        <div class="img-slide">
+            <!-- <img id="slide"
+            src="https://img.freepik.com/free-photo/close-up-image-programer-working-his-desk-office_1098-18707.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740"
+            alt=""> -->
+        </div>
+
+        <div class="controls">
+            <!-- <button onclick="prev()">Previous</button>
+            <button onclick="next()">Next</button> -->
+        </div>
+    </div>
+
+    <script>
+
+        // create the image element dynamically
+
+        const image = document.createElement("img");
+        image.id = "slide";
+        image.src = "https://img.freepik.com/free-photo/close-up-image-programer-working-his-desk-office_1098-18707.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740";
+        document.querySelector(".img-slide").appendChild(image);
+
+
+        // Create buttons dynamically
+        const buttons = document.createElement("button");
+
+        const Pbutton = document.createElement("button");
+        Pbutton.innerHTML = "Previous";
+        Pbutton.className = "prev";
+        Pbutton.onclick = prev;
+        document.querySelector(".controls").appendChild(Pbutton);
+
+        const Nbutton = document.createElement("button");
+        Nbutton.innerHTML = "Next";
+        Nbutton.className = "next";
+        Nbutton.onclick = next;
+        document.querySelector(".controls").appendChild(Nbutton);
+
+        // Array of images
+        const images = [
+            "https://img.freepik.com/premium-vector/programming-code-icon-abstract-robot-holding-programming-code-symbol-hand-coding-background_127544-1269.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740",
+            "https://img.freepik.com/premium-vector/programming-code-coding-hacker-sign-programming-code-icon-made-with-binary-code-wireframe-hand_127544-3400.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740",
+            "https://img.freepik.com/free-photo/professional-programmer-working-late-dark-office_1098-18705.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740",
+            "https://img.freepik.com/free-photo/close-up-image-programer-working-his-desk-office_1098-18707.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740",
+            "https://img.freepik.com/free-vector/blue-futuristic-networking-technology_53876-97395.jpg?ga=GA1.1.361418861.1748170143&semt=ais_items_boosted&w=740"
+        ];
+
+        let index = 0;
+        const slide = document.getElementById("slide");
+        function showImage(i) {
+            let newIndex = i;
+
+            while (newIndex < 0) {
+                newIndex += images.length;
+            }
+
+            // To make no. not exceed the length of the images array(5)
+            while (newIndex >= images.length) {
+                newIndex -= images.length;
+            }
+            index = newIndex;
+            slide.src = images[index]; // Update in images
+
+        }
+
+        function next() {
+            showImage(index + 1);
+        }
+        function prev() {
+            showImage(index - 1);
+        }
+
+        // Auto slide every 3 seconds
+
+        setInterval(() => {
+            showImage(index + 1);
+        }, 3000);
+        // Initial image
+        window.onload = function () {
+            showImage(0);
+        }
+    </script>
+
+</body>
+
+</html>
